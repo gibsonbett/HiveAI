@@ -15,9 +15,15 @@ const processQueue = (error: unknown | null) => {
   failedQueue = []
 }
 
+const normalizeApiBaseUrl = (rawBaseUrl: string) => {
+  const trimmed = rawBaseUrl.trim().replace(/\/+$/, '')
+  if (trimmed.endsWith('/api/v1')) return trimmed
+  return `${trimmed}/api/v1`
+}
+
 export const createApi = (baseURL: string) => {
   const api = axios.create({
-    baseURL,
+    baseURL: normalizeApiBaseUrl(baseURL),
     withCredentials: true,
     headers: { 'Content-Type': 'application/json' },
   })
