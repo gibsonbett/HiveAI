@@ -147,13 +147,15 @@ export const enqueueEmail = async (data: {
     data.token || '',
     data.projectTitle || '',
     data.amount?.toString() || '',
-  ].join(':');
+  ]
+    .join('|')
+    .replace(/[:\s]/g, '_');
 
   await emailQueue.add(`email:${data.type}`, data, { jobId });
 };
 
 export const enqueuePaymentRetry = async (transactionId: string, type = 'stk-query', delay = 30000) => {
-  const jobId = `retry:${transactionId}:${type}`;
+  const jobId = `retry|${transactionId}|${type}`.replace(/[:\s]/g, '_');
   await paymentRetryQueue.add(`retry:${transactionId}`, { transactionId, type }, { delay, jobId });
 };
 
