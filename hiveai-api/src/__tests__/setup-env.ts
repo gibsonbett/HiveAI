@@ -1,0 +1,9 @@
+process.env.NODE_ENV = process.env.NODE_ENV || 'test';
+process.env.PORT = process.env.PORT || '5000';
+process.env.MONGO_URI = process.env.MONGO_URI || 'mongodb://localhost:27017/hiveai-test';
+process.env.REDIS_URL = process.env.REDIS_URL || 'redis://localhost:6379';
+process.env.JWT_SECRET = process.env.JWT_SECRET || 'test-jwt-secret-123456';
+process.env.JWT_REFRESH_SECRET = process.env.JWT_REFRESH_SECRET || 'test-refresh-secret-123456';
+process.env.JWT_ACCESS_EXPIRY = process.env.JWT_ACCESS_EXPIRY || '15m';
+process.env.JWT_REFRESH_EXPIRY = process.env.JWT_REFRESH_EXPIRY || '30d';
+process.env.CORS_ORIGIN = process.env.CORS_ORIGIN || 'http://localhost:3000';
