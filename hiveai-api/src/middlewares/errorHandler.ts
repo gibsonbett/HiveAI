@@ -51,20 +51,10 @@ export const errorHandler = (
     stack: !isProduction ? err.stack : undefined,
   });
 
-  if (isProduction) {
-    if (statusCode >= 500) {
-      message = 'Internal server error';
-    } else if (statusCode === 400) {
-      message = 'Invalid request';
-    } else if (statusCode === 401) {
-      message = 'Unauthorized';
-    } else if (statusCode === 403) {
-      message = 'Forbidden';
-    } else if (statusCode === 404) {
-      message = 'Resource not found';
-    } else if (statusCode === 409) {
-      message = 'Conflict';
-    }
+  // Keep client-safe 4xx messages actionable in production (e.g. "Email already registered").
+  // Only mask unexpected server errors.
+  if (isProduction && statusCode >= 500) {
+    message = 'Internal server error';
   }
 
   sendError(res, message, statusCode);
