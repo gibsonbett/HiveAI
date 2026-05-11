@@ -57,8 +57,6 @@ const userSchema = new Schema<IUser>(
 );
 
 userSchema.index({ role: 1, status: 1 });
-userSchema.index({ email: 1 });
-userSchema.index({ phone: 1 });
 userSchema.index({ skills: 1 });
 userSchema.index({ approvalToken: 1, approvalTokenExpiry: 1 });
 
