@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: hiveai-api
+    runtime: node
+    rootDir: hiveai-api
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: 20
